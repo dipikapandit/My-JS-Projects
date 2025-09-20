@@ -2,87 +2,80 @@
 <html>
   <head>
     <title>Calculator</title>
+    <style>
+      .number {
+        background-color: aqua;
+        align-items: center;
+      }
+
+      .expn {
+        background-color: aquamarine;
+      }
+    </style>
   </head>
   <body>
     <p>
-      <button onclick="
-        calculation += '1';
-        console.log(calculation);
+      <button class="number" onclick="
+        updateCalculation('1');
         ">1</button>
 
-      <button onclick="
-        calculation += '2';
-        console.log(calculation);
+      <button class="number" onclick="
+        updateCalculation('2');
         ">2</button>
 
-      <button onclick="
-        calculation += '3';
-        console.log(calculation);
+      <button class="number" onclick="
+        updateCalculation('3');
         ">3</button>
 
-      <button onclick="
-        calculation += ' * ';
-        console.log(calculation);
+      <button class="expn" onclick="
+        updateCalculation(' * ');
         ">*</button>
 
-      <button onclick="
-        calculation += ' / ';
-        console.log(calculation);
-        ">/</button>
-
-      
-
+      <button class="expn" onclick="
+        updateCalculation(' / ');
+        ">÷</button>      
     </p>
 
     <p>
-      <button onclick="
-        calculation += '4';
-        console.log(calculation);
+      <button class="number" onclick="
+        updateCalculation('4');
         ">4</button>
 
-      <button onclick="
-        calculation += '5';
-        console.log(calculation);
+      <button class="number" onclick="
+        updateCalculation('5');
         ">5</button>
 
-      <button onclick="
-        calculation += '6';
-        console.log(calculation);
+      <button class="number" onclick="
+        updateCalculation('6');
         ">6</button>
 
-      <button onclick="
-        calculation += ' + ';
-        console.log(calculation);
+      <button class="expn" onclick="
+        updateCalculation(' + ');
         ">+</button>
 
-      <button onclick="
-        calculation += ' - ';
-        console.log(calculation);
+      <button class="expn" onclick="
+        updateCalculation(' - ');
         ">-</button>
     </p>
 
     <p>
-      <button onclick="
-        calculation += '7';
-        console.log(calculation);
+      <button class="number" onclick="
+        updateCalculation('7');
         ">7</button>
 
-      <button onclick="
-        calculation += '8';
-        console.log(calculation);
+      <button class="number" onclick="
+        updateCalculation('8');
         ">8</button>
 
-      <button onclick="
-        calculation += '9';
-        console.log(calculation);
+      <button class="number" onclick="
+        updateCalculation('9');
         ">9</button>
 
-      <button onclick="
-        calculation = '0';
-        console.log(calculation);
+      <button class="expn" onclick="
+        updateCalculation(0);
         ">AC</button>    
         
-      <button onclick="
+      <button class="expn" onclick="
           calculation = eval(calculation);
           console.log(calculation);
           ">=</button>    
@@ -93,8 +86,12 @@
 
     </p>
     <script>
-
       let calculation = '';
+
+      function updateCalculation (num) {
+        calculation += num ;
+        console.log(calculation);
+      }
 
     </script>
   </body>
