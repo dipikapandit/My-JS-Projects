@@ -3,17 +3,57 @@
   <head>
     <title>Calculator</title>
     <style>
+      body {
+        text-align: center;
+        font-family: Arial, sans-serif;
+        background-color: #d2c0e3;
+      }
+      button {
+        font-size: 20px;
+        width: 50px;
+        height: 50px;
+        margin: 5px;
+        border-radius: 10px;
+        border: none;
+        cursor: pointer;
+      }
+
       .number {
-        background-color: aqua;
-        align-items: center;
+        background-color: lightblue;
+        color: black;
+        font-weight: bold;
+        border: 2px solid rgb(24, 24, 49);
+        box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+      }
+      .number:hover {
+        background-color: deepskyblue;
       }
 
       .expn {
-        background-color: aquamarine;
+        background-color: lightgreen;
+        color: black;
+        font-weight: bold;
+        border: 2px solid rgb(24, 49, 31);
+        box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+      }
+      .expn:hover {
+        background-color: limegreen;
+      }
+      .js-calculation {
+        font-size: 30px;
+        margin-bottom: 20px;
+        min-height: 40px;
+      }
+      .identity {
+        font-size: 20px;
+        color: rgb(151, 59, 111);
+        margin-top: 20px;
       }
     </style>
   </head>
   <body>
+    <p class="js-calculation"></p>
+
     <p>
       <button class="number" onclick="
         updateCalculation('1');
@@ -28,12 +68,15 @@
         ">3</button>
 
       <button class="expn" onclick="
-        updateCalculation(' * ');
-        ">*</button>
+        calculation = calculation.slice(0, -1);
+        showCalculation();
+        ">C</button>  
 
       <button class="expn" onclick="
-        updateCalculation(' / ');
-        ">÷</button>      
+        calculation = '';
+        showCalculation(0);
+        document.querySelector('.js-calculation').innerHTML = 0;
+        ">AC</button>  
     </p>
 
     <p>
@@ -49,13 +92,14 @@
         updateCalculation('6');
         ">6</button>
 
-      <button class="expn" onclick="
-        updateCalculation(' + ');
-        ">+</button>
+        <button class="expn" onclick="
+        updateCalculation(' * ');
+        ">*</button>
 
       <button class="expn" onclick="
-        updateCalculation(' - ');
-        ">-</button>
+        updateCalculation(' / ');
+        ">÷</button>  
+    
     </p>
 
     <p>
@@ -71,26 +115,63 @@
         updateCalculation('9');
         ">9</button>
 
+         <button class="expn" onclick="
+        updateCalculation(' + ');
+        ">+</button>
+
       <button class="expn" onclick="
-        updateCalculation(0);
-        ">AC</button>    
-        
-      <button class="expn" onclick="
-          calculation = eval(calculation);
-          console.log(calculation);
-          ">=</button>    
+        updateCalculation(' - ');
+        ">-</button>      
     </p>
 
+
     <p>
+      <button class="number" onclick="
+        updateCalculation('0');
+        ">0</button>
+
+      <button class="number" onclick="
+        updateCalculation('.');
+        ">.</button>
+
+        <button class="number" onclick="
+          updateCalculation('(');
+        "> ( </button>
+
+        <button class="number" onclick="
+          updateCalculation(')');
+        "> ) </button>
+
+        <button class="expn" onclick="
+          calculation = eval(calculation);
+          
+          showCalculation();
+          ">=</button>  
+          
+      
+    </p>
+
+    <p class="identity">
       Calculator made by: dipikachu (,,` w `,,)
 
     </p>
-    <script>
-      let calculation = '';
+    <script>  
+
+      let calculation = JSON.parse(localStorage.getItem('calculation')) || '';
+      showCalculation();
 
       function updateCalculation (num) {
         calculation += num ;
         console.log(calculation);
+
+        localStorage.setItem('calculation', JSON.stringify(calculation));
+
+        showCalculation();
+
+      }
+
+      function showCalculation () {
+        document.querySelector('.js-calculation').innerHTML = calculation;
       }
 
     </script>
